@@ -1,22 +1,72 @@
-;; Welcome to the Assignment 1 of the "Robot Programming with Lisp" course!
+Welcome to the Assignment 1 of the "Robot Programming with Lisp" course!
+
+Below you see a lot of Common Lisp code that you probably don't understand.
+This assignment is about Emacs, not Common Lisp, so you don't need to
+understand what the code does. The assignment is to demonstrate some of the
+power of Emacs to you. You won't need to remember all the keyboard shortcuts used.
+
+This is a text-based RPG game. However, the code is broken.
+Your task is to fix the code and get the game to run.
+
+Task 1. Arrange your tabs
+<Ctrl>+<Super>+<Up> maximizes Emacs. <Super> is the <Windows> key.
+Now press the following keys: "C-x 1", "C-x 2", "C-x o", "C-x b repl RET", "C-x o", "C-x 3"
+Now you've arranged the tabs so that the assignment is always on the right side.
+If you messed it up you can always start over from the beginning of the Task.
+
+Task 2. Comment out the assignment text
+Natural language text is not allowed in Lisp files. The sign for comments is ";" in Lisp.
+Go to the top of the file: "M-<", mark the beginning of the selection: "C-SPC",
+go down until the end of the text: "C-Down", comment out selection: "M-;"
+
+Task 3. Emacs macro fun
+Below you see a Lisp `defparameter' clause.
+It is correct only for two variables: `*monster-num*' and `*monsters*'.
+You want to put the next four variables into the same clause as '*monsters*' is in.
+Go down with your cursor to the line with `*monster-builders*'.
+Start recording a macro: "C-x (" (you can cancel half-way with C-g).
+Turn the line from "*monster-builders*" into "(defparameter *monster-builders* nil)"
+Press "Down", "C-a". Now your cursor is at the beginning of the next line.
+Finish recording a macro: "C-x )".
+Call the macro 3 times: "C-x e", "C-x e", "C-x e"
+Save the file: "C-x s"
+
+Task 4. Copy pasting (aka killing and yanking)
+Go to the bottom of the file: "M->"
+Press "C-Up" to go one function up
+Press "C-M-SPC" to select one function
+Cut the function out: "C-w" ("C-k" cuts line by line)
+Go to the top of the file: "M-<"
+Go down until you're right above "(defun game-loop ()"
+"C-y" pastes
+"M-y" goes through the kill-ring (aka clipboard in Windows)
+Btw, "C-k", "C-y", "M-y" work in most terminals as well.
+
+Task 5. Compiling code
+Save and compile the whole file: "C-x C-s", "C-c C-k"
+Uncomment the line ";; (game-loop)" in "(defun orc-battle ()"
+"TAB" fixes indentation
+Compile just the function you just changed: "C-c C-c"
+If you get warnings or errors, try to see what looks weird, style warnings are ok
+If you entered a Debugger, either click on "[*ABORT]" or "[ABORT]" or press
+the number associated with it, e.g. "1".
+
+Task 6. Play the game!
+If compilation went fine, switch to the tab with the repl: "C-x o", "C-x o", ...
+Type (orc-battle) and press <Enter>.
+"C-c C-c" in the REPL kills the process and sends you to the Debugger.
+
+Task 7. Ask Emacs for help
+Press "C-h b" ("h" is for help, "b" is for key bindings) and see if you find anything
+interesting.
 
 
-
-(defparameter *player-health* nil)
-(defparameter *player-agility* nil)
-(defparameter *player-strength* nil)
-(defparameter *monsters* nil)
-(defparameter *monster-builders* nil)
 (defparameter *monster-num* 12)
-
-(defun orc-battle ()
-  (init-monsters)
-  (init-player)
-  (game-loop)
-  (when (player-dead)
-    (princ "You have been killed. Game Over."))
-  (when (monsters-dead)
-    (princ "Congratulations! You have vanquished all of your foes.")))
+(defparameter *monsters* nil)
+*monster-builders*
+*player-health*
+*player-agility*
+*player-strength*
 
 (defun game-loop ()
   (unless (or (player-dead) (monsters-dead))
@@ -217,3 +267,12 @@ agility points! ")
           ((= x *player-strength*)
            (princ "A brigand cuts your arm with his whip, taking off 2 strength points! ")
            (decf *player-strength* 2)))))
+
+(defun orc-battle ()
+  (init-monsters)
+  (init-player)
+  ;; (game-loop)
+  (when (player-dead)
+    (princ "You have been killed. Game Over."))
+  (when (monsters-dead)
+    (princ "Congratulations! You have vanquished all of your foes.")))
