@@ -1,6 +1,3 @@
-;;; Definitions:
-;;; * A state is a list of conditions, e.g. "(:at-home :be-hungry :have-money)"
-;;; * An action is a mapping from one state to another state.
 
 (in-package :planner)
 

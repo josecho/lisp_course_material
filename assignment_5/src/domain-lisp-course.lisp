@@ -34,7 +34,7 @@
     :dels-conditions '(at-station-1 have-ticket))
 
 (def-action station-3->1
-    :preconditions '(at-station-1 have-ticket)
+    :preconditions '(at-station-3 have-ticket)
     :adds-conditions '(at-station-1)
     :dels-conditions '(at-station-3 have-ticket))
 
