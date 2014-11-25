@@ -19,7 +19,8 @@ We want to extend the functionality of the last REPL call in the roslisp turtles
 tutorial (http://wiki.ros.org/roslisp/Tutorials/OverviewVersion) to not just
 randomly move around like crazy but to draw an Archimedean spiral
 (http://en.wikipedia.org/wiki/Archimedean_spiral).
-Write a function MOVE that gets as an argument the name of the turtle and
+Write a function MOVE (and optionally helper functions for it)
+that gets as an argument the name of the turtle and
 the parameters "a" and "b" of the spiral and moves the turtle in the spiral.
 The equation of the spiral in polar coordinates (r, theta) is:
 
@@ -65,3 +66,4 @@ http://wiki.ros.org/actionlib_lisp/Tutorials/actionlibBasicUsage#Writing_a_clien
 You will need to define your own action type, including generating
 a ".action" file and writing the correct compilation rules in CMakeLists.txt for it.
 The naming and the signature of the action is up to you.
+The function for starting the server should be SPIRAL-SERVER with an empty lambda list.
